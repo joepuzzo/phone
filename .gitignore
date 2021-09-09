@@ -1,0 +1,8 @@
+node_modules
+dist
+types
+coverage
+index.d.ts
+.nyc_output
+.idea
+.eslintcache

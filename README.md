@@ -1,4 +1,4 @@
-# &#64;joepuzzo/phone
+# intl-phone
 
 A library that formats and validates phone numbers. 
 

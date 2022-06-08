@@ -1,5 +1,5 @@
 {
-  "name": "@joepuzzo/phone",
+  "name": "intl-phone",
   "version": "1.0.0",
   "description": "Phone formatting and validation library.",
   "main": "dist/cjs/index.js",

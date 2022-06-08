@@ -37,6 +37,11 @@ describe('getCountryCode', () => {
       expect(getCountryCode('IN')).toBe('91');
     });
 
+    test('Returns 91 for TR ( Turkey )', () => {
+      expect(getCountryCode('TR')).toBe('90');
+    });
+
+
   });
 
 })

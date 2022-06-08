@@ -110,7 +110,7 @@ describe('validatePhone', () => {
 
   });
 
-  // AE ( France ) -----------------------------------------------------
+  // FR ( France ) -----------------------------------------------------
   describe('FR ( France )', () => {
 
     test('validates a FR mobile phone number', () => {
@@ -121,7 +121,7 @@ describe('validatePhone', () => {
       expect(validatePhone('123456789', 'FR')).toBe(true)
     });
 
-    test('validates a FR toll_free phone number', () => {
+    test('validates a FR tollfree phone number', () => {
       expect(validatePhone('801234567', 'FR')).toBe(true)
     });
 
@@ -138,7 +138,7 @@ describe('validatePhone', () => {
       expect(validatePhone('7410410123', 'IN')).toBe(true)
     });
 
-    test('validates a IN toll_free phone number', () => {
+    test('validates a IN tollfree phone number', () => {
       expect(validatePhone('1800123456', 'IN')).toBe(true)
     });
 
@@ -150,8 +150,46 @@ describe('validatePhone', () => {
       expect(validatePhone('1244512900', 'IN')).toBe(true)
     });
 
-    test('validates a IN Tesla - +91-80-48149455', () => {
-      expect(validatePhone('8048149455', 'IN')).toBe(true)
+  });
+
+  // TR ( Turkey ) -----------------------------------------------------
+  describe('TR ( Turkey )', () => {
+
+    test('validates a TR mobile phone number', () => {
+      expect(validatePhone('5012345678', 'TR')).toBe(true)
+    });
+
+    test('validates a TR landline phone number', () => {
+      expect(validatePhone('2123456789', 'TR')).toBe(true)
+    });
+
+    test('validates a TR tollfree phone number', () => {
+      expect(validatePhone('8001234567', 'TR')).toBe(true)
+    });
+
+  });
+
+   // KR ( Korea ) -----------------------------------------------------
+   describe('KR ( Korea )', () => {
+
+    test('validates a KR mobile phone number', () => {
+      expect(validatePhone('1020000000', 'KR')).toBe(true)
+    });
+
+    test('validates a KR landline phone number', () => {
+      expect(validatePhone('22123456', 'KR')).toBe(true)
+    });
+
+    test('validates a KR tollfree phone number', () => {
+      expect(validatePhone('801234567', 'KR')).toBe(true)
+    });
+
+    test('validates a KR phone number with zero at beginning', () => {
+      expect(validatePhone('01079197869', 'KR')).toBe(false)
+    });
+
+    test('validates a KR phone number without zero at beginning', () => {
+      expect(validatePhone('1079197869', 'KR')).toBe(true)
     });
 
   });

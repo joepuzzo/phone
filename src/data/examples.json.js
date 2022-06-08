@@ -22,6 +22,11 @@ export default {
      "mobile":"470123456",
      "tollfree":"80012345"
   },
+  "BG": {
+   "fixedline": "2123456",
+   "mobile": "48123456",
+   "tollfree": "80012345"
+  },
   "CA":{
      "fixed":"5062345678",
      "mobile":"5062345678",
@@ -53,9 +58,9 @@ export default {
      "tollfree":"80123456"
   },
   "EE":{
-   "fixed_line":"3212345",
+   "fixed":"3212345",
    "mobile":"51234567",
-   "toll_free":"80012345"
+   "tollfree":"80012345"
   },
   "ES":{
      "fixed":"810123456",
@@ -93,9 +98,9 @@ export default {
      "tollfree":"800123456"
   },
   "HU":{
-     "fixed_line":"12345678",
+     "fixed":"12345678",
      "mobile":"201234567",
-     "toll_free":"80123456"
+     "tollfree":"80123456"
   },
   "IE":{
      "fixed":"2212345",
@@ -137,10 +142,20 @@ export default {
      "mobile":"1020000000",
      "tollfree":"801234567"
   },
+  "LT":{
+     "fixed":"31234567",
+     "mobile":"61234567",
+     "tollfree":"80012345"
+  },
   "LU":{
      "fixed":"27123456",
      "mobile":"628123456",
      "tollfree":"80012345"
+  },
+  "LV": {
+     "fixed": "63123456",
+     "mobile": "21234567",
+     "tollfree": "80123456"
   },
   "MO":{
      "fixed":"28212345",
@@ -152,6 +167,11 @@ export default {
      "mobile":"12221234567",
      "tollfree":"8001234567"
   },
+  "NG": {
+   "fixedline": "18040123",
+   "mobile": "8021234567",
+   "tollfree": "80017591759"
+ },
   "NL":{
      "fixed":"101234567",
      "mobile":"612345678",
@@ -183,9 +203,9 @@ export default {
      "tollfree":"800123456"
   },
   "RO":{
-     "fixed_line":"211234567",
+     "fixed":"211234567",
      "mobile":"712034567",
-     "toll_free":"800123456"
+     "tollfree":"800123456"
   },
   "SE":{
      "fixed":"8123456",
@@ -193,9 +213,9 @@ export default {
      "tollfree":"20123456"
   },
   "SI":{
-   "fixed_line":"12345678",
+   "fixed":"12345678",
    "mobile":"31234567",
-   "toll_free":"80123456"
+   "tollfree":"80123456"
   },
   "SG":{
      "fixed":"61234567",
@@ -203,9 +223,14 @@ export default {
      "tollfree":"18001234567"
   },
   "SK":{
-   "fixed_line":"221234567",
+   "fixed":"221234567",
    "mobile":"912123456",
-   "toll_free":"800123456"
+   "tollfree":"800123456"
+  },
+  "TR":{
+   "tollfree": "8001234567", 
+   "fixed": "2123456789",
+   "mobile": "5012345678"
   },
   "TW":{
      "fixed":"221234567",

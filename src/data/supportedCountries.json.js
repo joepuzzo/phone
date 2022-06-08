@@ -46,6 +46,11 @@ export default [
   "HU",
   "EE", 
   "SI", 
-  "SK"
+  "SK",
+  "TR",
+  "LT", 
+  "LV",
+  "BG",
+  "NG"
 ]
 

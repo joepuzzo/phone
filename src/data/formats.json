@@ -111,6 +111,45 @@
       }
     ]
   },
+  "BG": {
+    "country": "BG",
+    "countryCode": "359",
+    "nddPrefix": "0",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "2",
+        "formatter": "# # ## ##"
+      },
+      {
+        "leadingDigitsPattern": "43[1-6]|70[1-9]",
+        "formatter": "### ####"
+      },
+      {
+        "leadingDigitsPattern": "2",
+        "formatter": "# ### ####"
+      },
+      {
+        "leadingDigitsPattern": "[356]|4[124-7]|7[1-9]|8[1-6]|9[1-7]",
+        "formatter": "## ### ###"
+      },
+      {
+        "leadingDigitsPattern": "(?:70|8)0",
+        "formatter": "### ## ###"
+      },
+      {
+        "leadingDigitsPattern": "43[1-7]|7",
+        "formatter": "### ### ##"
+      },
+      {
+        "leadingDigitsPattern": "[48]|9[08]",
+        "formatter": "## ### ####"
+      },
+      {
+        "leadingDigitsPattern": "9",
+        "formatter": "### ### ###"
+      }
+    ]
+  },
   "CA": {
     "country": "CA",
     "countryCode": "1",
@@ -316,27 +355,27 @@
       }
     ]
   },
-  "EE":{
-    "country":"EE",
-    "countryCode":"372",
-    "iddPrefix":"00",
-    "formatters":[
-       {
-          "leadingDigitsPattern":"[369]|4[3-8]|5(?:[02]|1(?:[0-8]|95)|5[0-478]|6(?:4[0-4]|5[1-589]))|7[1-9]|88",
-          "formatter":"### ####"
-       },
-       {
-          "leadingDigitsPattern":"[45]|8(?:00[1-9]|[1-49])",
-          "formatter":"#### ####"
-       },
-       {
-          "leadingDigitsPattern":"7",
-          "formatter":"## ## ####"
-       },
-       {
-          "leadingDigitsPattern":"8",
-          "formatter":"#### ### ###"
-       }
+  "EE": {
+    "country": "EE",
+    "countryCode": "372",
+    "iddPrefix": "00",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "[369]|4[3-8]|5(?:[02]|1(?:[0-8]|95)|5[0-478]|6(?:4[0-4]|5[1-589]))|7[1-9]|88",
+        "formatter": "### ####"
+      },
+      {
+        "leadingDigitsPattern": "[45]|8(?:00[1-9]|[1-49])",
+        "formatter": "#### ####"
+      },
+      {
+        "leadingDigitsPattern": "7",
+        "formatter": "## ## ####"
+      },
+      {
+        "leadingDigitsPattern": "8",
+        "formatter": "#### ### ###"
+      }
     ]
   },
   "ES": {
@@ -830,6 +869,29 @@
       }
     ]
   },
+  "LT": {
+    "country": "LT",
+    "countryCode": "370",
+    "nddPrefix": "8",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "52[0-7]",
+        "formatter": "# ### ####"
+      },
+      {
+        "leadingDigitsPattern": "[7-9]",
+        "formatter": "### ## ###"
+      },
+      {
+        "leadingDigitsPattern": "37|4(?:[15]|6[1-8])",
+        "formatter": "## ######"
+      },
+      {
+        "leadingDigitsPattern": "[3-6]",
+        "formatter": "### #####"
+      }
+    ]
+  },
   "LU": {
     "country": "LU",
     "countryCode": "352",
@@ -873,6 +935,16 @@
       }
     ]
   },
+  "LV": {
+    "country": "LV",
+    "countryCode": "371",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "[269]|8[01]",
+        "formatter": "## ### ###"
+      }
+    ]
+  },
   "MO": {
     "country": "MO",
     "countryCode": "853",
@@ -905,6 +977,37 @@
       {
         "leadingDigitsPattern": "1",
         "formatter": "# ### ###"
+      }
+    ]
+  },
+  "NG": {
+    "country": "NG",
+    "countryCode": "234",
+    "nddPrefix": "0",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "78",
+        "formatter": "## ## ###"
+      },
+      {
+        "leadingDigitsPattern": "[12]|9(?:0[3-9]|[1-9])",
+        "formatter": "# ### ####"
+      },
+      {
+        "leadingDigitsPattern": "[3-7]|8[2-9]",
+        "formatter": "## ### ###"
+      },
+      {
+        "leadingDigitsPattern": "[7-9]",
+        "formatter": "### ### ####"
+      },
+      {
+        "leadingDigitsPattern": "[78]",
+        "formatter": "### #### #####"
+      },
+      {
+        "leadingDigitsPattern": "[78]",
+        "formatter": "### ##### ######"
       }
     ]
   },
@@ -1092,104 +1195,116 @@
     "formatters": [
       {
         "leadingDigitsPattern": "20",
-        "formatter": "##-### ##"
+        "formatter": "##-### ##",
+        "internationalFormat": "## ### ##"
       },
       {
         "leadingDigitsPattern": "9(?:00|39|44)",
-        "formatter": "###-####"
+        "formatter": "###-####",
+        "internationalFormat": "### ####"
       },
       {
         "leadingDigitsPattern": "[12][136]|3[356]|4[0246]|6[03]|90[1-9]",
-        "formatter": "##-### ##"
+        "formatter": "##-### ##",
+        "internationalFormat": "## ### ##"
       },
       {
         "leadingDigitsPattern": "8",
-        "formatter": "#-### ## ##"
+        "formatter": "#-### ## ##",
+        "internationalFormat": "# ### ## ##"
       },
       {
         "leadingDigitsPattern": "1[2457]|2(?:[247-9]|5[0138])|3[0247-9]|4[1357-9]|5[0-35-9]|6(?:[125689]|4[02-57]|7[0-2])|9(?:[125-8]|3[02-5]|4[0-3])",
-        "formatter": "###-### ##"
+        "formatter": "###-### ##",
+        "internationalFormat": "### ### ##"
       },
       {
         "leadingDigitsPattern": "9(?:00|39|44)",
-        "formatter": "###-### ###"
+        "formatter": "###-### ###",
+        "internationalFormat": "### ### ###"
       },
       {
         "leadingDigitsPattern": "1[13689]|2[0136]|3[1356]|4[0246]|54|6[03]|90[1-9]",
-        "formatter": "##-### ## ##"
+        "formatter": "##-### ## ##",
+        "internationalFormat": "## ### ## ##"
       },
       {
         "leadingDigitsPattern": "10|7",
-        "formatter": "##-### ## ##"
+        "formatter": "##-### ## ##",
+        "internationalFormat": "## ### ## ##"
       },
       {
         "leadingDigitsPattern": "8",
-        "formatter": "#-### ### ##"
+        "formatter": "#-### ### ##",
+        "internationalFormat": "# ### ### ##"
       },
       {
         "leadingDigitsPattern": "[13-5]|2(?:[247-9]|5[0138])|6(?:[124-689]|7[0-2])|9(?:[125-8]|3[02-5]|4[0-3])",
-        "formatter": "###-## ## ##"
+        "formatter": "###-## ## ##",
+        "internationalFormat": "### ## ## ##"
       },
       {
         "leadingDigitsPattern": "9",
-        "formatter": "###-## ## ###"
+        "formatter": "###-## ## ###",
+        "internationalFormat": "### ## ## ###"
       },
       {
         "leadingDigitsPattern": "[26]",
-        "formatter": "###-## ### ## ##"
+        "formatter": "###-## ### ## ##",
+        "internationalFormat": "### ## ### ## ##"
       }
     ]
   },
-  "SI":{
-    "country":"SI",
-    "countryCode":"386",
-    "iddPrefix":"00",
-    "nddPrefix":"0",
-    "formatters":[
-       {
-          "leadingDigitsPattern":"8[09]|9",
-          "formatter":"## ######"
-       },
-       {
-          "leadingDigitsPattern":"59|8",
-          "formatter":"### #####"
-       },
-       {
-          "leadingDigitsPattern":"[37][01]|4[0139]|51|6",
-          "formatter":"## ### ###"
-       },
-       {
-          "leadingDigitsPattern":"[1-57]",
-          "formatter":"# ### ## ##"
-       }
+  "SI": {
+    "country": "SI",
+    "countryCode": "386",
+    "iddPrefix": "00",
+    "nddPrefix": "0",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "8[09]|9",
+        "formatter": "## ######"
+      },
+      {
+        "leadingDigitsPattern": "59|8",
+        "formatter": "### #####"
+      },
+      {
+        "leadingDigitsPattern": "[37][01]|4[0139]|51|6",
+        "formatter": "## ### ###"
+      },
+      {
+        "leadingDigitsPattern": "[1-57]",
+        "formatter": "# ### ## ##"
+      }
     ]
   },
-  "SK":{
-    "country":"SK",
-    "countryCode":"421",
-    "iddPrefix":"00",
-    "nddPrefix":"0",
-    "formatters":[
-       {
-          "leadingDigitsPattern":"21",
-          "formatter":"# ## ####"
-       },
-       {
-          "leadingDigitsPattern":"[3-5][1-8]1[67]",
-          "formatter":"## ## ###"
-       },
-       {
-          "leadingDigitsPattern":"2",
-          "formatter":"#/### ### ##"
-       },
-       {
-          "leadingDigitsPattern":"[689]",
-          "formatter":"### ### ###"
-       },
-       {
-          "leadingDigitsPattern":"[3-5]",
-          "formatter":"##/### ## ##"
-       }
+  "SK": {
+    "country": "SK",
+    "countryCode": "421",
+    "iddPrefix": "00",
+    "nddPrefix": "0",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "21",
+        "formatter": "# ## ####"
+      },
+      {
+        "leadingDigitsPattern": "[3-5][1-8]1[67]",
+        "formatter": "## ## ###"
+      },
+      {
+        "leadingDigitsPattern": "2",
+        "formatter": "#/### ### ##"
+      },
+      {
+        "leadingDigitsPattern": "[689]",
+        "formatter": "### ### ###"
+      },
+      {
+        "leadingDigitsPattern": "[3-5]",
+        "formatter": "##/### ## ##"
+      }
     ]
   },
   "SG": {
@@ -1212,6 +1327,30 @@
       {
         "leadingDigitsPattern": "1",
         "formatter": "#### ### ####"
+      }
+    ]
+  },
+  "TR": {
+    "country": "TR",
+    "countryCode": "90",
+    "iddPrefix": "00",
+    "nddPrefix": "0",
+    "formatters": [
+      {
+        "leadingDigitsPattern": "512|8[01589]|90",
+        "formatter": "### ### ####"
+      },
+      {
+        "leadingDigitsPattern": "5(?:[0-59]|6161)",
+        "formatter": "### ### ## ##"
+      },
+      {
+        "leadingDigitsPattern": "[24][1-8]|3[1-9]",
+        "formatter": "### ### ## ##"
+      },
+      {
+        "leadingDigitsPattern": "80",
+        "formatter": "### ### #######"
       }
     ]
   },
@@ -1266,7 +1405,8 @@
           "\\d",
           "\\d",
           "\\d"
-        ]
+        ],
+        "internationalFormat": "###-###-####"
       }
     ]
   },

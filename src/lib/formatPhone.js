@@ -10,7 +10,7 @@ import { format } from './formatter';
  *
  * @return {string} The formatted phone number
  */
-export const formatPhone = (value, country) => {
+export const formatPhone = (value, country, options) => {
   const v = `${value}`;
-  return format( v, (val) => phoneFormatter(val, country) )
+  return format( v, (val) => phoneFormatter(val, country, options) )
 }

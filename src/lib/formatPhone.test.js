@@ -38,6 +38,22 @@ describe('formatPhone', () => {
       expect(console.warn).toBeCalledWith("The value 1015550123 does not match any formats.")
     });
 
+    test('formats a US mobile phone number with international format', () => {
+      expect(formatPhone('2015550123', 'US', { format: 'international' }  )).toBe("+1 (201) 555-0123");
+    });
+
+    test('formats a US mobile phone number with with international format and plusSymbol', () => {
+      expect(formatPhone('2015550123', 'US', { format: 'international', plusSymbol: false } )).toBe("1 (201) 555-0123");
+    });
+
+    test('formats a US mobile phone number when dialing out of France', () => {
+      expect(formatPhone('2015550123', 'US', { outOf: 'FR' }  )).toBe("00 1 (201) 555-0123");
+    });
+
+    // test.only('formats a US mobile phone number with E164 format', () => {
+    //   expect(formatPhone('2015550123', 'US', { format: 'E164', } )).toBe("+12015550123");
+    // });
+
   });
 
 
@@ -101,19 +117,39 @@ describe('formatPhone', () => {
 
   });
 
-  // AE ( France ) -----------------------------------------------------
+  // FR ( France ) -----------------------------------------------------
   describe('FR ( France )', () => {
-
-    test('formats a FR mobile phone number', () => {
-      expect(formatPhone('612345678', 'FR')).toBe("6 12 34 56 78");
-    });
 
     test('formats a FR landline phone number', () => {
       expect(formatPhone('123456789', 'FR')).toBe("1 23 45 67 89");
     });
 
-    test('formats a FR toll_free phone number', () => {
+    test('formats a FR tollfree phone number', () => {
       expect(formatPhone('801234567', 'FR')).toBe("801 23 45 67");
+    });
+
+    test('formats a FR mobile phone number', () => {
+      expect(formatPhone('612345678', 'FR')).toBe("6 12 34 56 78");
+    });
+
+    test('formats a FR mobile phone number with international format', () => {
+      expect(formatPhone('612345678', 'FR', { format: 'international' } )).toBe("+33 6 12 34 56 78");
+    });
+
+    test('formats a FR mobile phone number with international format and plus symbol', () => {
+      expect(formatPhone('612345678', 'FR', { format: 'international', plusSymbol: false } )).toBe("33 6 12 34 56 78");
+    });
+
+    test('formats a FR mobile phone number with national format', () => {
+      expect(formatPhone('612345678', 'FR', { format: 'national' } )).toBe("06 12 34 56 78");
+    });
+
+    test('formats a FR mobile phone number when dialing out of "US"', () => {
+      expect(formatPhone('612345678', 'FR', { outOf: 'US', } )).toBe("011 33 6 12 34 56 78");
+    });
+
+    test('formats a FR mobile phone number when dialing out of "CH"', () => {
+      expect(formatPhone('612345678', 'FR', { outOf: 'CH' } )).toBe("00 33 6 12 34 56 78");
     });
 
   });
@@ -129,8 +165,8 @@ describe('formatPhone', () => {
       expect(formatPhone('7410410123', 'IN')).toBe("74104 10123");
     });
 
-    test('formats a IN toll_free phone number', () => {
-      expect(formatPhone('1800123456', 'IN')).toBe("1800 12345");
+    test('formats a IN tollfree phone number', () => {
+      expect(formatPhone('1800123456', 'IN')).toBe("1800 1234 56");
     });
 
     test('formats a Google Mumbai - +91-22-6611-7200', () => {
@@ -141,10 +177,6 @@ describe('formatPhone', () => {
       expect(formatPhone('1244512900', 'IN')).toBe("124 451 2900");
     });
 
-    test('formats a IN Tesla - +91-80-48149455', () => {
-      expect(formatPhone('8048149455', 'IN')).toBe("80 4814 9455");
-    });
-
   });
 
   // KR ( Korea ) -----------------------------------------------------
@@ -152,6 +184,51 @@ describe('formatPhone', () => {
 
     test('formats a IN mobile phone number', () => {
       expect(formatPhone('1092790634', 'KR')).toBe("10-9279-0634");
+    });
+
+    test('formats a IN mobile phone number', () => {
+      expect(formatPhone('1079197869', 'KR')).toBe("10-7919-7869");
+    });
+
+  });
+
+    // SE ( Sweden ) -----------------------------------------------------
+    describe('SE ( Sweden )', () => {
+
+      701234567
+
+      test('formats a SE mobile phone number', () => {
+        expect(formatPhone('701234567', 'SE')).toBe("70-123 45 67");
+      });
+
+      test('formats a SE mobile phone number', () => {
+        expect(formatPhone('501756647', 'SE')).toBe("501-75 66 47");
+      });
+  
+    });
+
+  // NG ( Nigeria ) -----------------------------------------------------
+  describe('NG ( Nigeria )', () => {
+
+    test('formats a NG mobile phone number', () => {
+      expect(formatPhone('8021234567', 'NG')).toBe("802 123 4567");
+    });
+
+  });
+
+  // TR ( Turkey ) -----------------------------------------------------
+  describe('TR ( Turkey )', () => {
+
+    test('formats a TR mobile phone number', () => {
+      expect(formatPhone('5012345678', 'TR')).toBe("501 234 56 78");
+    });
+
+    test('formats a TR landline phone number', () => {
+      expect(formatPhone('2123456789', 'TR')).toBe("212 345 67 89");
+    });
+
+    test('formats a FR tollfree phone number', () => {
+      expect(formatPhone('8001234567', 'TR')).toBe("800 123 4567");
     });
 
   });

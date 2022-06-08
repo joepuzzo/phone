@@ -198,8 +198,6 @@ Also acceptable storage
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
-
 ### Installing
 
 ```
@@ -217,6 +215,20 @@ npm run test
 ```
 npm run build
 ```
+
+## Design Thought Process
+
+Read [this](https://gist.github.com/joepuzzo/a7934a96f9424a3973a3d1e9bb65a68a) for a code thought process.
+
+## Adding/Updating countries
+
+This lib is based on googles libphonenumber. To generate our configs, we eat googles meta.json. We have added a script in the `runnable` directory that can be used as follows: 
+
+```bash
+npm run generate:meta /../../libphonenumber-js/metadata.json
+```
+
+Were the arg is your path to googles metadata.json file
 
 ## Typescript
 

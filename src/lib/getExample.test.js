@@ -31,6 +31,15 @@ describe('getExample', () => {
 
   });
 
+   // Mexico ----------------------------------------------------------
+   describe('Mexico', () => {
+
+    test('Returns 12221234567 for MX mobile', () => {
+      expect(getExample('MX', 'mobile')).toBe('12221234567');
+    });
+    
+  });
+
 })
 
 

@@ -12,6 +12,24 @@ import { formatPhone } 'intl-phone';
 formatPhone('2015550123', 'US')
 // ==> "(201) 555-0123"
 
+formatPhone('612345678', 'FR')
+// ==> "6 12 34 56 78"
+
+formatPhone('612345678', 'FR', { format: 'international' })
+// ==> "+33 6 12 34 56 78"
+
+formatPhone('612345678', 'FR', { format: 'international', plusSymbol: false })
+// ==> "33 6 12 34 56 78"
+
+formatPhone('612345678', 'FR', { format: 'national' })
+// ==> "06 12 34 56 78"
+
+formatPhone('612345678', 'FR', { outOf: 'US' })
+// ==> "011 33 6 12 34 56 78"
+
+formatPhone('612345678', 'FR', { outOf: 'CH' })
+// ==> "00 33 6 12 34 56 78"
+
 ```
 
 ## `validatePhone` Example usage
@@ -30,9 +48,7 @@ validatePhone('1015550123', 'US')
 
 ## Future Work
 
-Eventually we should add options that allow user to chose and control the format.
-1. `international` vs `domestic` 
-2. Adding `+1`
+Eventually we should add options that allow user to chose format="E164".
 
 ---
 
@@ -40,16 +56,16 @@ Eventually we should add options that allow user to chose and control the format
 
 ## Problem Statement
 
-* input formatting ( making it look correct )
-* input validation ( checking that the number is valid )
+- input formatting ( making it look correct )
+- input validation ( checking that the number is valid )
 
-## Standards 
+## Standards
 
 [E.164](https://en.wikipedia.org/wiki/E.164)
+
 ## Terminology
 
-
-### Trunk Prefix 
+### Trunk Prefix
 
 A trunk prefix is a digit sequence to be dialed before a telephone number to initiate a call for the purpose of selecting an appropriate telecommunications circuit by which the call is to be routed.
 
@@ -58,16 +74,16 @@ NDD is a trunk prefix
 
 ————————————————————————————————————————
 
-### IDD ( International Direct Dialing ) 
+### IDD ( International Direct Dialing )
 
 Layman's Terms: How do I get out of my country !
 
 Also known as: `Exit Prefix`, `International Dialing Code`, and `International Call Prefix`
 
-Example: I want to get Out of the USA and into Australia: 
+Example: I want to get Out of the USA and into Australia:
 
 ```
-011 61 7 3333 3333 
+011 61 7 3333 3333
 ^^^
 ```
 
@@ -81,14 +97,15 @@ Note: this can be replaced by `+` symbol when formatting a phone number to match
 
 ————————————————————————————————————————
 
-### Country Code 
+### Country Code
+
 Layman's Terms: How do I get into a country !
 
-Example: I want to get Into Australia from the USA: 
+Example: I want to get Into Australia from the USA:
 
 ```
-011 61 7 3333 3333 
-    ^^ 
+011 61 7 3333 3333
+    ^^
 ```
 
 ————————————————————————————————————————
@@ -99,15 +116,15 @@ Layman’s Terms: Extra numbers when dialing within a country
 
 Background: in a number of countries, local dialing may require the addition of a '0' in front of the subscriber number. With E.164 formatting, this '0' must usually be removed.
 
-Example: 
+Example:
 
 ```
 Dial Within Australia: 07 3333 3333
-					   ^
+                        ^
 
 Dial Into Australia ( from US )	: 011 61 7 3333 3333
 
-							^^^NO 0 in front of 7^^^
+                                 ^^^NO 0 in front of 7^^^
 
 E.164 Format: + 61 7 3333 3333
 
@@ -155,21 +172,21 @@ Given `011 61 07 3333 3333` you can get:
 
 ```json
 {
-	"iddPrefix": "011",
-	"countryCode": "61",
-	"nddPrefix": "0",
-	"areaCode": "7",
-	"number": "33333333",
+  "iddPrefix": "011",
+  "countryCode": "61",
+  "nddPrefix": "0",
+  "areaCode": "7",
+  "number": "33333333"
 }
 ```
 
-However whats required to be stored is: 
+However whats required to be stored is:
 
 ```json
 {
-	"country": "AU",
-	"areaCode": "7",
-	"number": "33333333",
+  "country": "AU",
+  "areaCode": "7",
+  "number": "33333333"
 }
 ```
 
@@ -179,20 +196,20 @@ Also acceptable storage
 
 ```json
 {
-	"country": "AU",
-	"countryCode": "61",
-	"number": "733333333",
+  "country": "AU",
+  "countryCode": "61",
+  "number": "733333333"
 }
 ```
 
 ```json
 {
-	"country": "AU",
-	"number": "733333333",
+  "country": "AU",
+  "number": "733333333"
 }
 ```
 
---- 
+---
 
 ## Developing
 
@@ -222,7 +239,7 @@ Read [this](https://gist.github.com/joepuzzo/a7934a96f9424a3973a3d1e9bb65a68a) f
 
 ## Adding/Updating countries
 
-This lib is based on googles libphonenumber. To generate our configs, we eat googles meta.json. We have added a script in the `runnable` directory that can be used as follows: 
+This lib is based on googles libphonenumber. To generate our configs, we eat googles meta.json. We have added a script in the `runnable` directory that can be used as follows:
 
 ```bash
 npm run generate:meta /../../libphonenumber-js/metadata.json
@@ -240,6 +257,6 @@ Also check out this [link](https://www.typescriptlang.org/docs/handbook/declarat
 
 **NOTE Below is actually not done for now but I kept it in the readme in case this becomes a problem.**
 
-Due to a known issue with browsers importing json files. This package must also contain the `.js` variants of the raw json files. 
+Due to a known issue with browsers importing json files. This package must also contain the `.js` variants of the raw json files.
 
 Therefore, not unlike googles lib-phonenumber library, we need to ship this along with the `.json.js` files.

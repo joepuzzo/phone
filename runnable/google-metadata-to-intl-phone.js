@@ -118,7 +118,7 @@ const generateFormatter = ( formats, country ) => {
 
   const formatters = formats.map( format => { 
     if( !format.international_format ){
-      console.log(`No international format for ${country}`);
+      // console.log(`No international format for ${country}`);
     }
     const ret = {
       // The last leading_digits_pattern is used here, as it is the most detailed
@@ -141,63 +141,22 @@ const generateFormatter = ( formats, country ) => {
 /** ------------------------------------------------------------
  * What countries to include in output
  */
-const supported = [
-  "US",
-  "CA",
-  "PR", 
-  "MX", 
-  "AE", 
-  "JO", 
-  "IL", 
-  "BE", 
-  "HR", 
-  "CZ", 
-  "DK", 
-  "DE", 
-  "GR", 
-  "ES", 
-  "FR", 
-  "GB", 
-  "IE", 
-  "IS",
-  "IT", 
-  "LU", 
-  "NL", 
-  "NO", 
-  "AT", 
-  "PL", 
-  "PT", 
-  "PL", 
-  "CH", 
-  "SE", 
-  "FI", 
-  "CN", 
-  "HK",
-  "MO", 
-  "TW", 
-  "JP", 
-  "KR", 
-  "AU", 
-  "NZ", 
-  "SG", 
-  "IN", 
-  "ZA", 
-  "RO",
-  "HU",
-  "EE", 
-  "SI", 
-  "SK",
-  "TR",
-  "LT",
-  "LV",
-  "BG",
-  "NG"
-  ]
+
+// Below is old manual list
+// const supported = ["US","CA","PR","MX","AE","JO","IL","BE","HR","CZ","DK","DE","GR","ES","FR","GB","IE","IS","IT","LU","NL","NO","AT","PL","PT","PL","CH","SE","FI","CN","HK","MO","TW","JP","KR","AU","NZ","SG","IN","ZA","RO","HU","EE","SI","SK","TR","LT","LV","BG","NG","TH"];
+
+// Below is every single country
+// const supported = ["AC","AD","AE","AF","AG","AI","AL","AM","AO","AR","AS","AT","AU","AW","AX","AZ","BA","BB","BD","BE","BF","BG","BH","BI","BJ","BL","BM","BN","BO","BQ","BR","BS","BT","BW","BY","BZ","CA","CC","CD","CF","CG","CH","CI","CK","CL","CM","CN","CO","CR","CU","CV","CW","CX","CY","CZ","DE","DJ","DK","DM","DO","DZ","EC","EE","EG","EH","ER","ES","ET","FI","FJ","FK","FM","FO","FR","GA","GB","GD","GE","GF","GG","GH","GI","GL","GM","GN","GP","GQ","GR","GT","GU","GW","GY","HK","HN","HR","HT","HU","ID","IE","IL","IM","IN","IO","IQ","IR","IS","IT","JE","JM","JO","JP","KE","KG","KH","KI","KM","KN","KP","KR","KW","KY","KZ","LA","LB","LC","LI","LK","LR","LS","LT","LU","LV","LY","MA","MC","MD","ME","MF","MG","MH","MK","ML","MM","MN","MO","MP","MQ","MR","MS","MT","MU","MV","MW","MX","MY","MZ","NA","NC","NE","NF","NG","NI","NL","NO","NP","NR","NU","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PM","PR","PS","PT","PW","PY","QA","RE","RO","RS","RU","RW","SA","SB","SC","SD","SE","SG","SH","SI","SJ","SK","SL","SM","SN","SO","SR","SS","ST","SV","SX","SY","SZ","TA","TC","TD","TG","TH","TJ","TK","TL","TM","TN","TO","TR","TT","TV","TW","TZ","UA","UG","US","UY","UZ","VA","VC","VE","VG","VI","VN","VU","WF","WS","XK","YE","YT","ZA","ZM","ZW"];
+
+// Below is what we currenrly support as some of the countries above have no mapping
+const supported = ["AD","AE","AF","AL","AM","AO","AR","AT","AU","AW","AZ","BA","BD","BE","BF","BG","BH","BI","BJ","BN","BO","BR","BT","BW","BY","BZ","CA","CD","CF","CG","CH","CI","CK","CL","CM","CN","CO","CR","CU","CV","CW","CY","CZ","DE","DJ","DK","DZ","EC","EE","EG","ER","ES","ET","FI","FJ","FM","FO","FR","GA","GB","GE","GF","GH","GI","GL","GM","GN","GP","GQ","GR","GT","GW","GY","HK","HN","HR","HT","HU","ID","IE","IL","IN","IO","IQ","IR","IS","IT","JO","JP","KE","KG","KH","KM","KP","KR","KW","LA","LB","LI","LK","LR","LS","LT","LU","LV","LY","MA","MC","MD","ME","MG","MH","MK","ML","MM","MN","MO","MQ","MR","MT","MU","MV","MW","MX","MY","MZ","NA","NC","NE","NF","NG","NI","NL","NO","NP","NR","NU","NZ","OM","PA","PE","PF","PG","PH","PK","PL","PM","PR","PS","PT","PW","PY","QA","RE","RO","RS","RU","RW","SA","SB","SC","SD","SE","SG","SI","SK","SL","SM","SN","SO","SR","SS","ST","SV","SY","SZ","TD","TG","TH","TJ","TL","TM","TN","TO","TR","TV","TW","TZ","UA","UG","US","UY","UZ","VE","VN","VU","WF","WS","XK","YE","ZA","ZM","ZW"];
 
 /** ------------------------------------------------------------
  * Full output
  */
-Object.entries(parsedInput.countries).map(([key, value]) => {
+Object.entries(parsedInput.countries)
+.filter(([key]) => supported.find( s => s === key) )
+.map(([key, value]) => {
   return {
     country: key,
     countryCode: value.phone_code,
@@ -207,7 +166,7 @@ Object.entries(parsedInput.countries).map(([key, value]) => {
     examples: value.examples,
     pattern: value.national_number_pattern 
   }
-}).filter(c => supported.find( s => s === c.country) ).forEach( c => output[c.country] = c );
+}).forEach( c => output[c.country] = c );
 
 /** ------------------------------------------------------------
  * Safety check to look for missing data 
@@ -219,7 +178,41 @@ supported.forEach( m => {
   }
 })
 
-Object.entries(output).forEach(([key, val]) =>{ if(!val.formatters) console.log('No formatters for', key)} )
+let regionNames = new Intl.DisplayNames(['en'], {type: 'region'});
+
+const mapped = [];
+const failed = [];
+
+Object.entries(output).forEach(([key, val]) => { 
+  if(!val.formatters || val.formatters.length === 0) {
+    console.log('No formatters for', key)
+    failed.push(key);
+  } else {
+    mapped.push(key);
+  }
+});
+
+console.log('Successfully mapped these', JSON.stringify(mapped));
+
+console.log('-----------------------------');
+
+const successList = mapped.map(key => {
+  return regionNames.of(key);  // example: "United States"
+});
+
+console.log('Success list',JSON.stringify(successList));
+
+console.log('----------------------------------------------------');
+
+console.log('Failed ot map these',JSON.stringify(failed));
+
+console.log('-----------------------------');
+
+const failedNames = failed.map(key => {
+  return regionNames.of(key);  // example: "United States"
+});
+
+console.log('Failed list',JSON.stringify(failedNames));
 
 /** ------------------------------------------------------------
  * Separate out data into sub objects
@@ -241,6 +234,63 @@ Object.entries(output).forEach(([key, val]) =>{
     formatters: val.formatters,
   }
 })
+
+// Ok so we may have made some edits to the file so lets read in our files and only add whats missing 
+const ourFormats = JSON.parse(fs.readFileSync(`${__dirname}/../src/data/formats.json`, 'utf-8'));
+const ourExamples = JSON.parse(fs.readFileSync(`${__dirname}/../src/data/examples.json`, 'utf-8'));
+const ourPatterns = JSON.parse(fs.readFileSync(`${__dirname}/../src/data/patterns.json`, 'utf-8'));
+
+Object.entries(ourFormats).forEach(([key, value])=>{
+  // Override with existing value
+  phoneFormats[key] = value;
+});
+
+Object.entries(ourExamples).forEach(([key, value])=>{
+  // Override with existing value
+  examples[key] = value;
+})
+
+Object.entries(ourPatterns).forEach(([key, value])=>{
+  // Override with existing value
+  patterns[key] = value;
+})
+
+// For output to you the user we log what was added!
+const newlyAddedFormats = [];
+const newlyAddedExamples = [];
+const newlyAddedPatterns = [];
+
+Object.keys(phoneFormats).forEach((key)=>{
+  if( !ourFormats[key] ){
+    newlyAddedFormats.push(key);
+  }
+})
+
+Object.keys(examples).forEach((key)=>{
+  if( !ourExamples[key] ){
+    newlyAddedExamples.push(key);
+  }
+})
+
+Object.keys(patterns).forEach((key)=>{
+  if( !ourPatterns[key] ){
+    newlyAddedPatterns.push(key);
+  }
+})
+
+console.log('----------------------------------------------------');
+
+console.log('Newly Added Formats', JSON.stringify(newlyAddedFormats));
+console.log('Newly Added Examples', JSON.stringify(newlyAddedExamples));
+console.log('Newly Added Patterns', JSON.stringify(newlyAddedPatterns));
+
+const newNames = newlyAddedFormats.map(key => {
+  return regionNames.of(key);  // example: "United States"
+});
+
+console.log('Newly Added list',JSON.stringify(newNames));
+
+// Finally output new files
 
 fs.writeFileSync(`${__dirname}/output/full.json`, JSON.stringify(output, null, 2) );
 fs.writeFileSync(`${__dirname}/output/formats.json`, JSON.stringify(phoneFormats, null, 2) );

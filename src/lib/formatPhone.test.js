@@ -132,16 +132,36 @@ describe('formatPhone', () => {
       expect(formatPhone('612345678', 'FR')).toBe("6 12 34 56 78");
     });
 
+    test('formats a FR landline phone number when country code is present', () => {
+      expect(formatPhone('+33123456789', 'FR')).toBe("1 23 45 67 89");
+    });
+
+    test('formats a FR tollfree phone number when country code is present', () => {
+      expect(formatPhone('+33801234567', 'FR')).toBe("801 23 45 67");
+    });
+
+    test('formats a FR mobile phone number when country code is present', () => {
+      expect(formatPhone('+33612345678', 'FR')).toBe("6 12 34 56 78");
+    });
+
     test('formats a FR mobile phone number with international format', () => {
       expect(formatPhone('612345678', 'FR', { format: 'international' } )).toBe("+33 6 12 34 56 78");
     });
 
-    test('formats a FR mobile phone number with international format and plus symbol', () => {
+    test('formats a FR mobile phone number with international format when full number is given', () => {
+      expect(formatPhone('+33612345678', 'FR', { format: 'international' } )).toBe("+33 6 12 34 56 78");
+    });
+
+    test('formats a FR mobile phone number with international format and no plus symbol', () => {
       expect(formatPhone('612345678', 'FR', { format: 'international', plusSymbol: false } )).toBe("33 6 12 34 56 78");
     });
 
     test('formats a FR mobile phone number with national format', () => {
       expect(formatPhone('612345678', 'FR', { format: 'national' } )).toBe("06 12 34 56 78");
+    });
+
+    test('formats a FR mobile phone number with national format when zero is present', () => {
+      expect(formatPhone('0612345678', 'FR', { format: 'national' } )).toBe("06 12 34 56 78");
     });
 
     test('formats a FR mobile phone number when dialing out of "US"', () => {
@@ -152,6 +172,46 @@ describe('formatPhone', () => {
       expect(formatPhone('612345678', 'FR', { outOf: 'CH' } )).toBe("00 33 6 12 34 56 78");
     });
 
+  });
+
+  // LT ( Lithuania ) -----------------------------------------------------
+  describe('LT  ( Lithuania )', () => {
+
+    test('formats a LT mobile phone number', () => {
+      expect(formatPhone('61234567', 'LT' )).toBe("612 34567");
+    });
+
+    test('formats a LT mobile phone number with national format', () => {
+      expect(formatPhone('61234567', 'LT', { format: 'national' } )).toBe("8612 34567");
+    });
+
+    test('formats a LT mobile phone number with national format when nddPrefix ( 8 ) is present', () => {
+      expect(formatPhone('861234567', 'LT', { format: 'national' } )).toBe("8612 34567");
+    });
+  });
+
+  // HU ( Hungary ) -----------------------------------------------------
+  describe('HU  ( Hungary )', () => {
+
+    test('formats a HU mobile phone number', () => {
+      expect(formatPhone('201234567', 'HU' )).toBe("20 123 4567");
+    });
+
+    test('formats a HU mobile phone number with national format', () => {
+      expect(formatPhone('201234567', 'HU', { format: 'national' } )).toBe("0620 123 4567");
+    });
+
+    test('formats a HU mobile phone number with national format when nddPrefix ( 06 ) is present', () => {
+      expect(formatPhone('06201234567', 'HU', { format: 'national' } )).toBe("0620 123 4567");
+    });
+  });
+
+  // MX ( Mexico ) -----------------------------------------------------
+  describe('MX  ( Mexico )', () => {
+
+    test('formats a MX mobile phone number', () => {
+      expect(formatPhone('12221234567', 'MX' )).toBe("1 222 123 4567");
+    });
   });
 
    // IN ( India ) -----------------------------------------------------
@@ -182,30 +242,45 @@ describe('formatPhone', () => {
   // KR ( Korea ) -----------------------------------------------------
   describe('KR ( Korea )', () => {
 
-    test('formats a IN mobile phone number', () => {
+    test('formats a KR mobile phone number', () => {
       expect(formatPhone('1092790634', 'KR')).toBe("10-9279-0634");
     });
 
-    test('formats a IN mobile phone number', () => {
+    test('formats a KR mobile phone number', () => {
       expect(formatPhone('1079197869', 'KR')).toBe("10-7919-7869");
+    });
+
+    test('does NOT formats an invalid KR mobile phone number', () => {
+      expect(formatPhone('0112345678', 'KR')).toBe("0112345678");
     });
 
   });
 
-    // SE ( Sweden ) -----------------------------------------------------
-    describe('SE ( Sweden )', () => {
+  // SE ( Sweden ) -----------------------------------------------------
+  describe('SE ( Sweden )', () => {
 
-      701234567
-
-      test('formats a SE mobile phone number', () => {
-        expect(formatPhone('701234567', 'SE')).toBe("70-123 45 67");
-      });
-
-      test('formats a SE mobile phone number', () => {
-        expect(formatPhone('501756647', 'SE')).toBe("501-75 66 47");
-      });
-  
+    test('formats a SE mobile phone number', () => {
+      expect(formatPhone('701234567', 'SE')).toBe("70-123 45 67");
     });
+
+    test('formats a SE mobile phone number', () => {
+      expect(formatPhone('501756647', 'SE')).toBe("501-75 66 47");
+    });
+
+  });
+
+   // IE ( Irish ) -----------------------------------------------------
+   describe('IE ( Irish )', () => {
+
+    test('does not format an invalid IE mobile phone number', () => {
+      expect(formatPhone('087123456', 'IE')).toBe("087123456");
+    });
+
+    test('does format an IE mobile phone number when it has zero with format override', () => {
+      expect(formatPhone('87123456', 'IE', { format: 'national' })).toBe("087 123 456");
+    });
+
+  });
 
   // NG ( Nigeria ) -----------------------------------------------------
   describe('NG ( Nigeria )', () => {
@@ -227,7 +302,7 @@ describe('formatPhone', () => {
       expect(formatPhone('2123456789', 'TR')).toBe("212 345 67 89");
     });
 
-    test('formats a FR tollfree phone number', () => {
+    test('formats a TR tollfree phone number', () => {
       expect(formatPhone('8001234567', 'TR')).toBe("800 123 4567");
     });
 

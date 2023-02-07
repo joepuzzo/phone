@@ -11,20 +11,23 @@
     "index.d.ts"
   ],
   "exports": {
-    "import": "./dist/esm/index.js",
-    "require": "./dist/cjs/index.js"
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    },
+    "./package.json": "./package.json"
   },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch ",
-    "build": "rm -rf dist && npm run generate:js && rollup --config && npm run build:types && cp -r src/data dist/",
-    "build:types": "tsc",
+    "build": "rm -rf dist && npm run generate:js && rollup --config && cp -r src/data dist/",
+    "generate:meta": "node runnable/google-metadata-to-intl-phone",
     "generate:js": "npm run generate:examples && npm run generate:formats && npm run generate:patterns && npm run generate:supportedCountries",
     "generate:examples": "node runnable/json-to-js ./src/data/examples.json",
     "generate:formats": "node runnable/json-to-js ./src/data/formats.json",
     "generate:patterns": "node runnable/json-to-js ./src/data/patterns.json",
     "generate:supportedCountries": "node runnable/json-to-js ./src/data/supportedCountries.json",
-    "prepare": "npm run build:types && npm run test && npm run build",
+    "prepare": "npm run test && npm run build",
     "build:docker": "docker build -t intl-phone .",
     "run:docker": "docker run -p 80:80 intl-phone",
     "serve": "echo done"

@@ -127,6 +127,19 @@ describe('validatePhone', () => {
 
   });
 
+   // MX ( Mexico ) -----------------------------------------------------
+   describe('MX ( Mexico )', () => {
+
+    test('validates a MX mobile phone number', () => {
+      expect(validatePhone('12221234567', 'MX')).toBe(true)
+    });
+
+    test('validates a MX mobile phone number', () => {
+      expect(validatePhone('1 222 123', 'MX')).toBe(false)
+    });
+
+  });
+
    // IN ( India ) -----------------------------------------------------
    describe('IN ( India )', () => {
 
@@ -188,8 +201,21 @@ describe('validatePhone', () => {
       expect(validatePhone('01079197869', 'KR')).toBe(false)
     });
 
+    test('validates a KR phone number with zero at beginning', () => {
+      expect(validatePhone('0112345678', 'KR')).toBe(false)
+    });
+
     test('validates a KR phone number without zero at beginning', () => {
       expect(validatePhone('1079197869', 'KR')).toBe(true)
+    });
+
+  });
+
+  // IE ( Irish ) -----------------------------------------------------
+  describe('IE ( Irish )', () => {
+
+    test('validates a IE phone number without zero at beginning', () => {
+      expect(validatePhone('087123456', 'IE')).toBe(false)
     });
 
   });

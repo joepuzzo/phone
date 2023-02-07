@@ -36,15 +36,31 @@ const DEFAULT_MASK = [/\(|\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /
  *
  * @return {[string]} A mask array
  */
-export const phoneFormatter = ( value, country, options ) => {
+export const phoneFormatter = ( val, country, options = {} ) => {
 
-    // Grab formatters array from the formatters object based on country
-    const formatters = getFormats(country) && getFormats(country).formatters;
+    // Initialize the value
+    let value = val;
+
+     // Grab formatters array from the formatters object based on country
+     const formatters = getFormats(country) && getFormats(country).formatters;
+     const formatData = getFormats(country);
+
+    // If we are national take off the first zero if its there 
+    // nddPrefix = 0 || 06 
+    if( options.format === 'national' && val && val.slice(0,formatData.nddPrefix.length) == formatData.nddPrefix ){
+      value = value.slice(formatData.nddPrefix.length,value.length);
+    }
 
     // We dont have any formatters for this country
     if( !formatters || formatters.length === 0 ){
       console.warn(`intl-phone does not currently support country ${country}, so the value passed was returned.`);
       return DEFAULT_MASK;
+    }
+
+    const includeCountryCode = options.format == 'E164' || options.format === 'international' || options.outOf
+    // If we are international format and there is a "+" remove the + and country code
+    if(includeCountryCode && value && value.includes('+')){
+     value = value.slice(formatData.countryCode.length + 1,value.length);
     }
 
     // Now we need to make a guess as to which formatter to use!
@@ -114,7 +130,6 @@ export const phoneFormatter = ( value, country, options ) => {
 
     if( options ){
  
-      const includeCountryCode = options.format == 'E164' || options.format === 'international' || options.outOf
       let countryCode = includeCountryCode ? getCountryCode(country) : '';
 
       const includePlusSymbol = options.plusSymbol != null ? options.plusSymbol : ( options.format == 'E164' || options.format == 'international');

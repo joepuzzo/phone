@@ -33,7 +33,7 @@
     "serve": "echo done"
   },
   "author": "Joe Puzzo",
-  "license": "UNLICENSED",
+  "license": "ISC",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.13.8",
     "@rollup/plugin-json": "^4.1.0",
